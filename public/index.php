@@ -6,6 +6,7 @@ require __DIR__ . '/../src/controllers/CategoryController.php';
 require __DIR__ . '/../src/controllers/ProcutController.php';
 
 header('Access-Control-Allow-Headers: GET, POST, PUT, DELETE, OPTIONS');
+header('Access-Control-Allow-Origin: *');
 
 if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(204);
@@ -16,7 +17,13 @@ $routes = [
     ['GET', '/public/api/categories', 'listCategories'],
 
     ['GET', '/public/api/products', 'listProcuts'],
+    ['GET', '/public/api/products/inactive', 'listInactiveProducts'],
     ['POST', '/public/api/products', 'createProduct'],
+    ['GET', '/public/api/products/(\d+)', 'getProductById'],
+    ['PUT', '/public/api/products/(\d+)', 'updateProduct'],
+    ['DELETE', '/public/api/products/(\d+)', 'deleteProduct'],
+    ['PUT', '/public/api/products/(\d+)/restore', 'restoreProduct'],
+    ['DELETE', '/public/api/products/(\d+)/force', 'forceDeleteProduct'],
 ];
 
 $method = $_SERVER['REQUEST_METHOD'];
