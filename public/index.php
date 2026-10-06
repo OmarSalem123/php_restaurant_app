@@ -4,6 +4,8 @@ require __DIR__ . '/../config/database.php';
 require __DIR__ . '/../src/helpers.php';
 require __DIR__ . '/../src/controllers/CategoryController.php';
 require __DIR__ . '/../src/controllers/ProcutController.php';
+require __DIR__ . '/../src/controllers/AuthController.php';
+
 
 header('Access-Control-Allow-Headers: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Origin: *');
@@ -24,6 +26,13 @@ $routes = [
     ['DELETE', '/public/api/products/(\d+)', 'deleteProduct'],
     ['PUT', '/public/api/products/(\d+)/restore', 'restoreProduct'],
     ['DELETE', '/public/api/products/(\d+)/force', 'forceDeleteProduct'],
+
+    // AUTH
+    ['POST', '/public/api/auth/register', 'registerUser'],
+    ['POST', '/public/api/auth/login', 'loginUser'],
+    ['GET', '/public/api/auth/me', 'getCurrentUser'],
+    ['POST', '/public/api/auth/logout', 'logoutUser']
+
 ];
 
 $method = $_SERVER['REQUEST_METHOD'];
